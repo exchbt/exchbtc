@@ -1,7 +1,7 @@
 # 交易api
 ## 终端交易数据
 ##### 委托下单
-    GET /api/v5/order
+    GET /api/v7/order
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
@@ -32,7 +32,7 @@ data.timeInForce | string | yes | 有效时间，目前默认GTC(挂单到成交
 data.type | string | yes | 0限价 1市价
 data.side | string | yes | b买单 s卖单
 ##### 委托查询
-    GET /api/v5/allOrders
+    GET /api/v7/allOrders
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
@@ -66,7 +66,7 @@ commision | string | yes | 手续费
 quoteAsset | string | yes | 使用资产
 baseAsset | string | yes | 总资产
 ##### 成交查询
-    GET /api/v5/deal
+    GET /api/v7/deal
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
@@ -111,7 +111,7 @@ tradeAmount | string | yes | 成交数量
 tradeTime | string | yes | 成交时间
 tradeCommission | number | yes | 成交手续费
 ##### 取消委托订单
-    GET /api/v5/cancelOrder
+    GET /api/v7/cancelOrder
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
@@ -129,7 +129,7 @@ orderId | number | yes | 订单号码
 origClientOrderId | string | yes | 
 clientOrderId | string | yes | 客户端下单id
 ##### 成交订单
-    GET /api/v5/trade
+    GET /api/v7/trade
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
@@ -153,7 +153,7 @@ commission | string | yes | 手续费
 matcher_id | string | yes | 成交对方id
 match_id | string | yes | 对方成交单号
 ##### 平台总成交量
-    GET /api/v5/total_trades
+    GET /api/v7/total_trades
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
@@ -167,7 +167,7 @@ amount | number | yes | 折合USD的成交总量
 target | number | yes | 盯市目标
 pending_rebate | number | yes | 待分红
 ##### 平台发币量
-    GET /api/v5/total_token
+    GET /api/v7/total_token
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
@@ -180,7 +180,7 @@ msg | string | yes | 描述
 amount_22 | number | yes | 22点发币量
 amount_24 | number | yes | 22-24点发币量
 ##### 平台用户交易量
-    GET /api/v5/trader_trades
+    GET /api/v7/trader_trades
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
@@ -194,7 +194,7 @@ msg | string | yes | 描述
 amount | number | yes | 总数量
 commission | number | yes | 手续费
 ##### 平台用户交易量
-    GET /api/v5/trader_rebate
+    GET /api/v7/trader_rebate
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
@@ -211,7 +211,7 @@ amounts.amount | string | yes | 数量
 amounts.hour | number | yes | 
 amounts.symbol | string | yes | 商品名
 ##### 平台用户交易量
-    GET /api/v5/listAssetFlow
+    GET /api/v7/listAssetFlow
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
@@ -248,7 +248,7 @@ assetFlowList.symbol | string | yes |
 assetFlowList.type | string | yes | 
 assetFlowList.assetFlowType | string | yes | 
 ##### 用户提现记录
-    GET /api/v5/withdraw/list
+    GET /api/v7/withdraw/list
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
@@ -270,7 +270,7 @@ WithdrawList.asset | string | yes |
 WithdrawList.status | string | yes | 状态
 WithdrawList.id | number | yes | 
 ##### 交易货币规则限制信息
-    GET /api/v5/exchangeAllInfo
+    GET /api/v7/exchangeAllInfo
 ##### Parameters:NONE
 
 ##### Response:

@@ -10,7 +10,7 @@
 - HTTP 5XX返回码是
 
 ## 限制
-- /api/v1/exchangeInfo rateLimits数组包含与交换器的REQUEST_WEIGHT和订单速率限制相关的对象。
+- /api/v7/exchangeInfo rateLimits数组包含与交换器的REQUEST_WEIGHT和订单速率限制相关的对象。
 - 当违反任何一个速率限制时，将返回429。
 - 每个路由都有一个权重，它决定每个端点计数的请求数量。较重的端点和对多个符号进行操作的端点的权重更大。
 - 当收到429时，作为一个API，您有义务退后一步，不要向API发送垃圾信息。
@@ -37,7 +37,7 @@
 - 逻辑如下:`if (timestamp < (serverTime + 1000)) && (serverTime - timestamp) <= recvWindow) {// process request} else {// reject request}`
 - 真正的交易是关于时机的。网络可能是不稳定和不可靠的，这可能导致请求花费不同的时间到达服务器。使用recvWindow，您可以指定请求必须在一定毫秒内被处理或被服务器拒绝。
 - 建议使用5000或更少的recvWindow !
-## GET /api/v5/order的终端签名示例
+## GET /api/v7/order的终端签名示例
 Key | Value
 --- | ---
 apiKey | vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
@@ -112,7 +112,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks;
 ##### 检查服务器时间
     GET /time
 ##### Exchange information
-    GET /api/v5/exchangeInfo
+    GET /api/v7/exchangeInfo
 ##### Parameters:NONE
 ##### Response:
     {
