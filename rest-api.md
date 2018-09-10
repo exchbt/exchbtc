@@ -235,7 +235,7 @@ data.Price | number | yes | 价格
 data.Volume | number | yes | 数量
 data.Timestamp | number | yes | 时间
 ##### 实时行情
-    GET /
+    websocket /
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
