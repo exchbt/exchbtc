@@ -10,7 +10,7 @@
 - HTTP 5XX返回码是
 
 ## 限制
-- /api/v7/exchangeInfo rateLimits数组包含与交换器的REQUEST_WEIGHT和订单速率限制相关的对象。
+- /api/v1/exchangeInfo rateLimits数组包含与交换器的REQUEST_WEIGHT和订单速率限制相关的对象。
 - 当违反任何一个速率限制时，将返回429。
 - 每个路由都有一个权重，它决定每个端点计数的请求数量。较重的端点和对多个符号进行操作的端点的权重更大。
 - 当收到429时，作为一个API，您有义务退后一步，不要向API发送垃圾信息。
@@ -37,7 +37,7 @@
 - 逻辑如下:`if (timestamp < (serverTime + 1000)) && (serverTime - timestamp) <= recvWindow) {// process request} else {// reject request}`
 - 真正的交易是关于时机的。网络可能是不稳定和不可靠的，这可能导致请求花费不同的时间到达服务器。使用recvWindow，您可以指定请求必须在一定毫秒内被处理或被服务器拒绝。
 - 建议使用5000或更少的recvWindow !
-## GET /api/v7/order的终端签名示例
+## GET /api/v5/order的终端签名示例
 Key | Value
 --- | ---
 apiKey | vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A
@@ -64,6 +64,29 @@ symbol=EBBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow
 
 (HMAC SHA256)
 [linux]$ curl -H "X-MBX-APIKEY: vmPUZE6mv9SD5VNHk4HlWFsOr6aKE2zvsw0MuIgwCIPy6utIco14y7Ju91duEh8A" -X GET 'https://www.exchbtc.com/api/v3/order?symbol=LTCBTC&side=BUY&type=LIMIT&timeInForce=GTC&quantity=1&price=0.1&recvWindow=5000&timestamp=1499827319559&signature=c8db56825ae71d6d79447849e617115f4a920fa2acdcab2b053c4b2838bd6b71'
+# API列表
+接口数据类型 | 请求方法 | 类型 | 描述 | 是否需要验签
+--- | --- | --- | --- | ---
+服务器信息 | api/v7/time | GET | 服务器时间 | NO
+用户订单 | api/v7/order | GET | 创建委托订单 | YES
+用户订单 | api/v7/allOrder | GET | 查询委托列表 | YES
+用户订单 | api/v7/deal | GET | 查询成交明细 | YES
+用户订单 | api/v7/cancelOrder | GET | 取消委托订单 | YES
+用户订单 | api/v7/trade | GET | 查询成交单详情 | YES
+用户订单 | api/v7/total_trade | GET | 查询平台总成交量 | YES
+用户订单 | api/v7/total_token | GET | 查询平台每天总发币量 | YES
+用户订单 | api/v7/trader_trades | GET | 查询平台用户每天交易量 | YES
+用户订单 | api/v7/trader_rebate | GET | 查询平台用户（代币或返佣）分红量 | YES
+用户信息 | api/v7/account | GET | 查询用户信息 | YES
+用户信息 | api/v7/balance | GET | 查询用户余额 | YES
+用户信息 | api/v7/listAssetInfo | GET | 查询用户资金流水记录 | YES
+用户信息 | api/v7/withdraw/list | GET | 查询用户提现记录 | YES
+交易品种信息 | api/v7/exchangeInfo | GET | 查询交易货币对信息 | YES
+市场行情 | api/v1/klines | GET | 查询历史K线 | NO
+市场行情 | / | websocket | 推送实时行情 | NO
+市场行情 | /api/v1/lastquote | GET | 查询最新报价表 | NO
+市场行情 | /api/v1/tlk | GET | 查询成交明细 | NO
+
 # 终端公共API
 ## 术语
 - base asset refers to the asset that is the quantity of a symbol.
@@ -112,7 +135,7 @@ m -> minutes; h -> hours; d -> days; w -> weeks;
 ##### 检查服务器时间
     GET /time
 ##### Exchange information
-    GET /api/v7/exchangeInfo
+    GET /api/v5/exchangeInfo
 ##### Parameters:NONE
 ##### Response:
     {
@@ -235,7 +258,7 @@ data.Price | number | yes | 价格
 data.Volume | number | yes | 数量
 data.Timestamp | number | yes | 时间
 ##### 实时行情
-    websocket /
+    GET /
 ##### Parameters:
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
