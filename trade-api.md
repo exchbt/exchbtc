@@ -116,7 +116,7 @@ tradeCommission | number | yes | 成交手续费
 Name | Type | Mandatory | Description
 --- | --- | --- | ---
 symbol | string | no | 商品名
-orderID | number | yes | 订单ID
+orderId | number | yes | 订单ID
 origClientOrderID | string | no | 
 newClientOrderID | string | no | 客户端下单id
 ##### Response:
